@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sprite Animation Maker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Sprite Animation Maker</h1>
+      <p>Build, preview and export browser-game sprite sheets locally.</p>
+    </div>
+    <div class="top-actions">
+      <button id="newProjectBtn" class="secondary">New Project</button>
+      <button id="loadImagesBtn" class="primary">Add Images</button>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="toolbar card">
+      <div class="control-group">
+        <label>Frames</label>
+        <div id="framePresets" class="segmented">
+          <button data-count="12">12</button>
+          <button data-count="24">24</button>
+          <button data-count="30">30</button>
+          <button data-count="60">60</button>
+          <button data-count="custom">Custom</button>
+        </div>
+      </div>
+
+      <div class="control-group compact">
+        <label for="customFrames">Custom count</label>
+        <input id="customFrames" type="number" min="1" max="240" value="12">
+      </div>
+
+      <div class="control-group compact">
+        <label for="frameWidth">Frame W</label>
+        <input id="frameWidth" type="number" min="1" value="512">
+      </div>
+      <div class="control-group compact">
+        <label for="frameHeight">Frame H</label>
+        <input id="frameHeight" type="number" min="1" value="512">
+      </div>
+
+      <div class="control-group compact">
+        <label for="columns">Columns</label>
+        <input id="columns" type="number" min="1" max="60" value="12">
+      </div>
+
+      <div class="control-group compact">
+        <label for="fps">FPS</label>
+        <input id="fps" type="number" min="1" max="60" value="12">
+      </div>
+
+      <label class="check"><input id="loop" type="checkbox" checked> Loop</label>
+      <label class="check"><input id="transparent" type="checkbox" checked> Transparent</label>
+    </section>
+
+    <section class="workspace">
+      <div class="left-panel">
+        <div class="card panel-head">
+          <div>
+            <h2>Frames</h2>
+            <span id="frameStatus">0 / 12 loaded</span>
+          </div>
+          <div class="small-actions">
+            <button id="sortBtn" class="secondary">Sort by name</button>
+            <button id="clearBtn" class="danger">Clear</button>
+          </div>
+        </div>
+        <div id="dropZone" class="drop-zone">
+          <strong>Drop images here</strong>
+          <span>or use “Add Images”. Images fill the frame slots in order.</span>
+        </div>
+        <div id="frameGrid" class="frame-grid"></div>
+      </div>
+
+      <aside class="right-panel">
+        <section class="card preview-card">
+          <div class="panel-head">
+            <div><h2>Animation Preview</h2><span id="previewFrame">Frame 0 / 0</span></div>
+          </div>
+          <div id="previewStage" class="preview-stage checker">
+            <canvas id="previewCanvas" width="512" height="512"></canvas>
+          </div>
+          <div class="play-controls">
+            <button id="playBtn" class="primary">▶ Play</button>
+            <button id="pauseBtn" class="secondary">Pause</button>
+            <button id="resetBtn" class="secondary">Reset</button>
+            <label class="range-label">Scale <input id="scale" type="range" min="25" max="200" value="100"></label>
+          </div>
+        </section>
+
+        <section class="card export-card">
+          <div class="panel-head">
+            <div><h2>Export</h2><span>Generated locally in your browser</span></div>
+          </div>
+          <div class="export-actions">
+            <button id="generateSheetBtn" class="primary">Generate Sprite Sheet</button>
+            <button id="downloadSheetBtn" class="secondary" disabled>Download PNG</button>
+          </div>
+          <div id="sheetInfo" class="info">No sprite sheet generated yet.</div>
+          <div class="sheet-preview-wrap"><canvas id="sheetCanvas"></canvas></div>
+        </section>
+
+        <section class="card code-card">
+          <div class="panel-head">
+            <div><h2>JavaScript</h2><span>Ready-to-use Canvas animation code</span></div>
+            <button id="copyCodeBtn" class="secondary">Copy Code</button>
+          </div>
+          <pre id="codeOutput"></pre>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <footer>Sprite Animation Maker • No server • Your images stay in your browser.</footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
